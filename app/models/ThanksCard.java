@@ -1,20 +1,55 @@
 package models;
 
-import play.db.ebean.Model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import com.avaje.ebean.Query;
+
+import java.util.*;
+import javax.persistence.*;
+import javax.validation.*;
+import com.avaje.ebean.*;
+import play.db.ebean.*;
+import play.data.validation.*;
+import com.avaje.ebean.Query;
+import com.avaje.ebean.annotation.CreatedTimestamp;
 
 @Entity
 public class ThanksCard extends Model {
 
 	@Id
-	public Integer ThanksCard_ID;
-	public Integer CardMaker_ID;
-	public java.sql.Date Transmission_date;
-	public java.sql.Date Help_date;
-	public Integer Helpcategory_ID;
-	public String Help;
-	public String Thanks;
-	public Integer Address_ID;
+	public Long thanks_id;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="send_dep")
+	public Department send_dep;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="send_id")
+	public Employee send_id;
+
+	@CreatedTimestamp
+	public Date send_date;
+
+	public Date help_date;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="helpcate_id")
+	public HelpCategory helpcate_id;
+
+	public String help_said;
+
+	public String thanks_message;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="receive_dep")
+	public Department receive_dep;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="receive_id")
+	public Employee receive_id;
+
+
+    public static Finder<Long, ThanksCard> find = new Finder<Long,ThanksCard>(
+    		Long.class, ThanksCard.class
+        );
 
 }

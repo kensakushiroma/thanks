@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class Read extends Model {
 
 	@Id
-	public Integer Read_ID;
-	public String Read;
-
+	public Integer read_id;
+	public String read_name;
 }

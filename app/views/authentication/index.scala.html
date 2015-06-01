@@ -10,10 +10,11 @@
 
 
         @form(routes.Authentication.authenticate()) {
-            @inputText(loginForm("username"))
+            @inputText(loginForm("emp_id"))
             @inputPassword(loginForm("password"))
 
             <input type="submit" value="Login">
+            <input type="reset" value="Reset">
 
         }
 

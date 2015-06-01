@@ -1,7 +1,108 @@
-@(message: String)
+@(depList: List[Department])(empList: List[Employee])(helpList: List[HelpCategory])
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>入力フォーム</title>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("/input.css")">
+<meta name="description" content="">
+<meta name="keywords" content="">
+</head>
 
-@main("Welcome to Play") {
 
-    @play20.welcome(message, style = "Java")
+<div class="contact">
+<form action="@routes.Application.addThanks()" style="display:inline" method="post">
+<p>以下のフォームにご入力の上、「登録」ボタンをクリックしてください。</p>
 
-}
+
+<table>
+<tbody>
+<tr>
+<th><label for="send_dep_id">部署名<p>(感謝する人)</p></label></th>
+<td class="arbitrary"></td>
+<td> <select style="width: 100px" name="send_dep_id" >
+  @for(u <- depList){
+ <option value=@u.dep_id>@u.dep_name</option>
+ }
+ </select>
+<br>
+</tr>
+<tr>
+<th><label for="send_emp_id">氏名<p>(感謝する人)</p></label></th>
+<td class="arbitrary"></td>
+<td><select style="width: 150px" name="send_emp_id" >
+  @for(u <- empList){
+ <option value=@u.emp_id>@u.emp_name</option>
+ }
+ </select>
+ <br>
+</tr>
+
+<tr>
+<th><label for="help">ヘルプ日</label></th>
+<td class="arbitrary"></td>
+<td><input type="text" name="help_date" id="name" size="50"><br>
+</tr>
+
+<tr>
+<th><label for="help_cate">ヘルプ項目</label></th>
+<td class="arbitrary"></td>
+<td>
+ <select style="width: 150px" name="helpcates_id">
+  @for(u <- helpList){
+ <option value=@u.helpcate_id>@u.helpcate_name</option>
+ }
+ </select>
+
+<br>
+</tr
+>
+<tr>
+<th><label for="help_said">ヘルプ内容</label></th>
+<td class="arbitrary"></td>
+<td><textarea name="help_said" id="help_said" rows="5" cols="40"></textarea></td>
+</tr>
+
+<tr>
+<th><label for="thanks_message">感謝の言葉</label></th>
+<td class="arbitrary"></td>
+<td><textarea name="thanks_message" id="thanks_message" rows="5" cols="40"></textarea></td>
+</tr>
+
+<tr>
+<th><label for="receive_dep_id">部署名<p>(感謝する人)</p></label></th>
+<td class="arbitrary"></td>
+<td> <select style="width: 100px" name="receive_dep_id" >
+  @for(u <- depList){
+ <option value=@u.dep_id>@u.dep_name</option>
+ }
+ </select>
+<br>
+</tr>
+
+<tr>
+<th><label for="receive_emp_id">氏名<p>(感謝される人)</p></label></th>
+<td class="arbitrary"></td>
+<td>
+<select style="width: 150px" name="receive_emp_id" >
+  @for(u <- empList){
+ <option value=@u.emp_id>@u.emp_name</option>
+ }
+ </select>
+
+<br>
+</tr>
+
+</tbody>
+</table>
+
+<p class="button"><input type="submit" value="登録" >
+
+<input type="reset" value="クリア">
+
+ <form action="@routes.Authentication.main()" style="display:inline" method="get" >
+ <input type="submit" value="マイページ">
+ </form>
+ </p>
+</form>
+</div>
+</html>

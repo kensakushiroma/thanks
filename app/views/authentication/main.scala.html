@@ -1,0 +1,129 @@
+@(login: String)(thanksList: List[ThanksCard])
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>マイページ</title>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("/main.css")">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="sample.css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<script src="sample.js"></script>
+</head>
+<body>
+
+<!-- コンテナ開始 -->
+<div id="container">
+
+<!-- ページ開始 -->
+<div id="page">
+
+
+<!-- ヘッダ開始 -->
+<div id="header">
+
+<center><p class="siteTitle"><h1>感謝カードシステム</h1></center>
+
+<ul class="nl clearFix">
+<li class="active"><a href="/">ホーム <span class="en">Home</span></a></li>
+<li><a href="/">感謝カード入力 <span class="en">ThanksCard</span></a></li>
+<li><a href="#">送信済メッセージ <span class="en">SendMessage</span></a></li>
+<li><a href="/bord">掲示板 <span class="en">Bord</span></a></li>
+<li><a href="#">代表的事例<span class="en">Company</span></a></li>
+<li><a href="#">集計<span class="en">Company</span></a></li>
+</ul>
+
+<hr class="none">
+
+</div>
+
+
+
+<!-- コンテンツ開始 -->
+<div id="content">
+
+
+<!-- メインカラム開始 -->
+<div id="main">
+<br>
+<DIV align="left" style="margin-left:70px">受信メッセージ一覧</div><br>
+<center><table class="example">
+
+
+
+<colgroup class="item"></colgroup>
+<colgroup span="4" class="data"></colgroup>
+
+<thead>
+<tr>
+<th rowspan="2">番号</th>
+<th colspan="2">感謝する人</th>
+<th rowspan="2">ヘルプ日</th>
+<th rowspan="2">ヘルプ項目</th>
+<th rowspan="2">ヘルプ内容</th>
+<th rowspan="2">感謝の言葉</th>
+<th rowspan="2">送信日</th>
+<th rowspan="2">全体を表示</th>
+</tr>
+
+  <tr>
+
+    <th>部署</th>
+
+    <th>名前</th>
+
+ </tr>
+</thead>
+
+<tbody>
+@for(u <- thanksList) {
+
+	<tr>
+	<td>@u.thanks_id</td>
+	<td>@u.send_dep.dep_name</td>
+    <td>@u.send_id.emp_name</td>
+    <td>@u.help_date</td>
+    <td>@u.helpcate_id.helpcate_name</td>
+    <td>@u.help_said</td>
+    <td>@u.thanks_message</td>
+    <td>@u.send_date</td>
+    <td><input type="button" value="詳細"></td>
+    </tr>
+}
+</tbody>
+
+</table></center>
+
+<br><br>
+</div>
+<!-- メインカラム終了 -->
+<hr class="clear">
+<!-- フッタ開始 -->
+<div id="footer">
+
+
+
+<address>
+
+<br>
+<h2>ThanksCard</h2>
+</address>
+
+</div>
+<!-- フッタ終了 -->
+
+
+
+</div>
+<!-- ページ終了 -->
+
+</div>
+<!-- コンテナ終了 -->
+
+</body>
+</html>
+
